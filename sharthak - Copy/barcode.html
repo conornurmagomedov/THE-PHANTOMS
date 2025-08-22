@@ -8,10 +8,79 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
     <!-- QuaggaJS for barcode scanning -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body class="bg-light">
-    <div class="container py-4">
+<style>
+    #scanner-container {
+    position: relative;
+}
+#interactive.viewport {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+#interactive.viewport > canvas, #interactive.viewport > video {
+    max-width: 100%;
+    width: 100%;
+}
+canvas.drawing, canvas.drawingBuffer {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#upload-preview-container {
+    max-height: 300px;
+    overflow: hidden;
+}
+#upload-preview {
+    max-height: 300px;
+    width: auto;
+}
+    .navbar {
+      background:rgb(220, 255, 237);
+      padding: 0;
+      opacity: 0.95;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #27ae60 !important;
+    }
+    .nav-link {
+      color: black !important;
+      margin: 0 3px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #27ae60 !important;
+    }
+
+</style>
+    </head>
+<body style="background-color: rgb(220, 255, 237) ;"">
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="mishara.png" alt="Logo" style="height:100px; padding: 0; margin: 0;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="calculator.html">Calculator</a></li>
+          <li class="nav-item"><a class="nav-link" href="leaderboard.html">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="offset.html">Carbon Offset</a></li>
+          <li class="nav-item"><a class="nav-link" href="eco-tips.html">Eco Tips</a></li>
+          <li class="nav-item"><a class="nav-link" href="barcode.html">Scan Barcode</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div style="margin-top: 100px;" class="container py-4">
         <div class="card mb-4 shadow-sm">
             <div class="card-header bg-success text-white">
                 <h1 class="h4 mb-0">Food CO2 Impact Scanner</h1>
