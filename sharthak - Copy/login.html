@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Tracker - Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #e6f7ec;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+    .btn-google {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-google img {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 380px;">
+      <h3 class="text-center mb-3">🌿 Carbon Tracker</h3>
+      <h5 class="text-center mb-4">Login</h5>
+
+      <form id="login-form">
+        <div class="mb-3">
+          <label>Email</label>
+          <input type="email" class="form-control" id="login-email" required>
+        </div>
+        <div class="mb-3">
+          <label>Password</label>
+          <input type="password" class="form-control" id="login-password" required>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#forgotModal">Forgot Password?</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Login</button>
+      </form>
+
+      <div class="text-center my-3">or</div>
+
+      <button type="button" class="btn btn-google w-100" id="google-login">
+        <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google">
+        Continue with Google
+      </button>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <h5>Reset Password</h5>
+        <input type="email" class="form-control my-2" id="reset-email" placeholder="Enter your email">
+        <button class="btn btn-success w-100" id="reset-btn">Send Reset Link</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Normal Email/Password Login
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      // Demo Login
+      if(email && password){
+        localStorage.setItem("currentUser", JSON.stringify({email}));
+        alert("Login successful!");
+        window.location.href = "index.html";
+      }
+    });
+
+    // Google Login Demo
+    document.getElementById("google-login").addEventListener("click", () => {
+      const demoUser = { name: "Google User", email: "google@example.com" };
+      localStorage.setItem("currentUser", JSON.stringify(demoUser));
+      alert("Google Login successful!");
+      window.location.href = "index.html";
+    });
+
+    // Forgot Password
+    document.getElementById("reset-btn").addEventListener("click", () => {
+      const resetEmail = document.getElementById("reset-email").value;
+      if(resetEmail){
+        alert("Password reset link sent to " + resetEmail);
+        document.getElementById("reset-email").value = "";
+        bootstrap.Modal.getInstance(document.getElementById("forgotModal")).hide();
+      }
+    });
+  </script>
+</body>
+</html>
